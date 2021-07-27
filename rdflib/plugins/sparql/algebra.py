@@ -94,6 +94,8 @@ def reorderTriples(l):
     ones with most bindings first
     """
 
+    return l # Do not reorder triples to meet SaGe needs for RL experiments
+
     def _addvar(term, varsknown):
         if isinstance(term, (Variable, BNode)):
             varsknown.add(term)
