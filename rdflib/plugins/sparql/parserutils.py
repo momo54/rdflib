@@ -7,6 +7,8 @@ from pyparsing import TokenConverter, ParseResults, originalTextFor
 
 from rdflib import BNode, Variable, URIRef
 
+from copy import deepcopy
+
 DEBUG = True
 DEBUG = False
 if DEBUG:
@@ -201,6 +203,14 @@ class Expr(CompValue):
             return e
         finally:
             self.ctx = None
+    
+    def __deepcopy__(self, memo):
+        cls = self.__class__
+        result = cls.__new__(cls)
+        memo[id(self)] = result
+        for k, v in self.__dict__.items():
+            setattr(result, k, deepcopy(v, memo))
+        return result
 
 
 class Comp(TokenConverter):
