@@ -1,7 +1,7 @@
 flake8
 html5lib
 isodate
-pyparsing
+pyparsing == 3.0.3
 requests
 six
 doctest-ignore-unicode
